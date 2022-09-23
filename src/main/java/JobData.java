@@ -96,19 +96,18 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        Set<HashMap<String, String>> set = new LinkedHashSet<>();
 
         for (HashMap<String, String> record : allJobs) {
             for (Map.Entry<String, String> name : record.entrySet()) {
                 if (name.getValue().toLowerCase().contains(value.toLowerCase())) {
-
-                    jobs.add(record);
+                    set.add(record);
                 }
             }
         }
-        Set<HashMap<String, String>> set = new LinkedHashSet<>(jobs);
 
-        jobs.clear();
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
         jobs.addAll(set);
 
         return jobs;
